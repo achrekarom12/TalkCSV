@@ -23,7 +23,7 @@ class TalkCSV:
         if self.df is not None:
             st.sidebar.write("File uploaded!")
             self.file_path = self.uploaded_file.name
-            # st.write("Uploaded file path:", self.file_path)
+            st.write("Uploaded file path:", self.file_path)
 
         self.process_question()
 
