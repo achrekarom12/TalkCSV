@@ -58,10 +58,8 @@ class TalkCSV:
             self.question = st.text_input("Question:")
 
         if st.button("Send"):
-            try:
-                self.answer = self.agent.run(self.question)
-            except Exception as e:
-                st.write("Enter a question first!")
+            self.answer = self.agent.run(self.question)
+        
 
         # if st.button("Clear"):
         #     self.question = ""
