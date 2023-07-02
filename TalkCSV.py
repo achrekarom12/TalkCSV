@@ -58,7 +58,11 @@ class TalkCSV:
             self.question = st.text_input("Question:")
 
         if st.button("Send"):
-            self.answer = self.agent.run(self.question)
+            try:
+                self.answer = self.agent.run(self.question)
+            except Exception as e:
+                st.write(e)
+                st.write(file_path)
         
 
         # if st.button("Clear"):
