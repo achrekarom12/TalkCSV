@@ -47,6 +47,8 @@ class TalkCSV:
             self.df = pd.read_csv(self.uploaded_file)
         else:
             st.sidebar.write("File not uploaded!")
+            st.write(file_path)
+            
 
     def process_question(self):
         try:
@@ -62,7 +64,6 @@ class TalkCSV:
                 self.answer = self.agent.run(self.question)
             except Exception as e:
                 st.write(e)
-                st.write(file_path)
         
 
         # if st.button("Clear"):
