@@ -53,7 +53,7 @@ class TalkCSV:
     def process_question(self):
         try:
             openai_api_key = openai.api_key
-            self.agent = create_csv_agent(OpenAI(temperature=0), self.file_path, verbose=False)
+            self.agent = create_csv_agent(OpenAI(temperature=0), self.uploaded_file, verbose=False)
 
             self.question = st.text_input("Question:")
         except Exception as e:
