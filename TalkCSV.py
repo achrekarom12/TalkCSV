@@ -23,7 +23,7 @@ class TalkCSV:
         if self.df is not None:
             st.sidebar.write("File uploaded!")
             self.file_path = self.uploaded_file.name
-            st.write("Uploaded file path:", self.file_path)
+            # st.write("Uploaded file path:", self.file_path)
 
         self.process_question()
 
@@ -45,15 +45,18 @@ class TalkCSV:
 
         if self.uploaded_file is not None:
             self.df = pd.read_csv(self.uploaded_file)
+            # check if the file is a valid CSV file
+            try:
+                self.df.head()
+            except Exception as e:
+                st.sidebar.write("Invalid CSV file!")
         else:
             st.sidebar.write("File not uploaded!")
-            st.write(file_path)
-            
 
     def process_question(self):
         try:
             openai_api_key = openai.api_key
-            self.agent = create_csv_agent(OpenAI(temperature=0), self.uploaded_file, verbose=False)
+            self.agent = create_csv_agent(OpenAI(temperature=0), self.file_path, verbose=False)
 
             self.question = st.text_input("Question:")
         except Exception as e:
@@ -64,7 +67,6 @@ class TalkCSV:
                 self.answer = self.agent.run(self.question)
             except Exception as e:
                 st.write(e)
-        
 
         # if st.button("Clear"):
         #     self.question = ""
